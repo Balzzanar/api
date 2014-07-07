@@ -31,16 +31,15 @@ $di->set('view', function(){
 	return $view;
 });
 
-/*
+/** Init the database connection */
 $di->set('db', function(){
 	return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
-		"host" => "localhost",
+		"host" => "localhost:3306",
 		"username" => "root",
 		"password" => "",
-		"dbname" => "invo"
+		"dbname" => "hejsan"
 	));
 });
-*/
 
 //Registering the Models-Metadata
 $di->set('modelsMetadata', 'Phalcon\Mvc\Model\Metadata\Memory');
@@ -54,10 +53,10 @@ try {
 	echo $application->handle()->getContent();
 }
 catch(Phalcon\Exception $e){
-	echo $e->getMessage();
-	      // TODO log exception
 
-        // remove view contents from buffer
+    /** Code to make 404-response working properly. */
+	echo $e->getMessage();
+	        // remove view contents from buffer
         ob_clean();
 
         $errorCode = 500;
