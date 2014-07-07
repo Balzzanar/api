@@ -33,6 +33,12 @@ $di->set('view', function(){
 
 /** Init the database connection */
 $di->set('db', function(){
+   return new \Phalcon\Db\Adapter\Pdo\Sqlite(array(  // <- return
+      "dbname" => '../apps/data/database.sqlite'
+   ));
+});
+/*
+$di->set('db', function(){
 	return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
 		"host" => "localhost:3306",
 		"username" => "root",
@@ -40,6 +46,7 @@ $di->set('db', function(){
 		"dbname" => "hejsan"
 	));
 });
+*/
 
 //Registering the Models-Metadata
 $di->set('modelsMetadata', 'Phalcon\Mvc\Model\Metadata\Memory');
@@ -55,7 +62,8 @@ try {
 catch(Phalcon\Exception $e){
 
     /** Code to make 404-response working properly. */
-	echo $e->getMessage();
+	echo $e->getMessage(); die; // <-  MAKE SURE TO HAVE 'DIE' HERE, ELSE NO ERROR MSG! =(
+
 	        // remove view contents from buffer
         ob_clean();
 
