@@ -5,7 +5,16 @@
 <div align="center">
 
 	<h2>Log In</h2>
+	<pre>
+		<?php 
+			foreach ($users as $user) {
+				echo $user->pass;
+				echo $user->id;
+			}
+			print_r($users->count()); 
 
+		?>
+	</pre>
 	<?php echo Tag::form(array('users/login', 'class' => 'form-inline', 'autocomplete' => 'off')) ?>
 
 		<p>

@@ -67,7 +67,7 @@ try {
 	/** Init the database connection */
 	$di->set('db', function(){
 	   return new \Phalcon\Db\Adapter\Pdo\Sqlite(array(  // <- return
-	      "dbname" => '../apps/data/database.sqlite'
+	      "dbname" => '../app/data/database.sqlite'
 	   ));
 	});
 
@@ -107,19 +107,19 @@ try {
         ob_clean();
 
         $errorCode = 500;
-        $errorView = '../apps/errors/500_error.phtml';
+        $errorView = '../app/errors/500_error.phtml';
 
         switch (true) {
             // 401 UNAUTHORIZED
             case $e->getCode() == 401:
                 $errorCode = 401;
-                $errorView = '../apps/errors/401_unathorized.phtml';
+                $errorView = '../app/errors/401_unathorized.phtml';
                 break;
 
             // 403 FORBIDDEN
             case $e->getCode() == 403:
                 $errorCode = 403;
-                $errorView = '../apps/errors/403_forbidden.phtml';
+                $errorView = '../app/errors/403_forbidden.phtml';
                 break;
 
             // 404 NOT FOUND
@@ -127,7 +127,7 @@ try {
             case ($e instanceof Phalcon\Mvc\View\Exception):
             case ($e instanceof Phalcon\Mvc\Dispatcher\Exception):
                 $errorCode = 404;
-                $errorView = '../apps/errors/404_not_found.phtml';
+                $errorView = '../app/errors/404_not_found.phtml';
                 break;
         }
 

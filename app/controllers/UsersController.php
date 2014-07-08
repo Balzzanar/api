@@ -5,39 +5,26 @@ class UsersController extends Phalcon\Mvc\Controller
 
     public function indexAction()
     {
-
+        $this->view->setVar("users", Users::find());  
     }
 
-    public function loginAction()
+    public function newAction()
     {
-
-        if ($this->request->isPost()) {
-
-            $user = Users::findFirst(array(
-                'login = :login: and password = :password:',
-                'bind' => array(
-                    'login' => $this->request->getPost("login"),
-                    'password' => sha1($this->request->getPost("password"))
-                )
-            ));
-
-            if ($user === false){
-                $this->flash->error("Incorrect credentials");
-                return $this->dispatcher->forward(array(
-                    'controller' => 'users',
-                    'action' => 'index'
-                ));
-            }
-
-            $this->session->set('auth', $user->id);
-
-            $this->flash->success("You've been successfully logged in");
+        $users = Users::find();
+        $us = array();
+        foreach ($users as $user) {
+            $u = array(
+                    "id"            => $user->id,
+                    "username"      => $user->username,
+                    "pass"          => $user->pass,
+                    "fullname"      => $user->fullname,
+                    "cre_tm"        => $user->cre_tm
+                );
+            $us[] = (object)$u;
         }
-
-        return $this->dispatcher->forward(array(
-            'controller' => 'posts',
-            'action' => 'index'
-        ));
+        $us['count'] = count($us);
+        echo json_encode($us);
+        exit(0);    // <-- This will make it work with api calls. 
     }
 
     public function logoutAction()
@@ -47,6 +34,32 @@ class UsersController extends Phalcon\Mvc\Controller
             'controller' => 'posts',
             'action' => 'index'
         ));
+    }
+
+    public function addAction()
+    {
+        /** Check if the request is a post and then if it has an index called 'user' */
+        $request = new Phalcon\Http\Request();
+        if ($request->isPost() == true && $request->hasPost('user')) 
+        {
+            $data = json_decode($request->getPost('user'));
+            $user = new Users();
+
+            $user->username = $data->saleid;
+            $user->pass = $data->idcoworker;
+            $user->fullname = $data->office_name;
+            $user->cre_tm = 1;
+            $user->save();
+            echo json_encode(array("newID" => $user->id, "name" => $user->username));   
+        }
+        else
+        {
+            echo json_encode($request->getPost());   
+        }
+        
+        
+
+        die;
     }
 
 }
