@@ -5,7 +5,12 @@ class UsersController extends Phalcon\Mvc\Controller
 
     public function indexAction()
     {
-        $this->view->setVar("users", Users::find());  
+        $phql = "SELECT * FROM users ORDER BY users.id desc";
+        $query = new Phalcon\Mvc\Model\Query($phql, $this->getDI());
+        $users = $query->execute();
+        
+        $this->view->setVar("users", $users);  
+        //$this->view->setVar("users", Users::find());  
     }
 
     public function newAction()
@@ -24,7 +29,16 @@ class UsersController extends Phalcon\Mvc\Controller
         }
         $us['count'] = count($us);
         echo json_encode($us);
-        exit(0);    // <-- This will make it work with api calls. 
+        
+        $this->flashsess->setCssClasses(array("success" => "banan"));
+        $this->flashsess->success("All users listed!");
+        
+    //    return $this->dispatcher->forward(array(
+     //           "controller" => "users",
+     //           "action" => "index"
+     //       ));
+        return $this->response->redirect("users/index");
+        //exit(0);    // <-- This will make it work with api calls. 
     }
 
     public function logoutAction()
@@ -56,8 +70,6 @@ class UsersController extends Phalcon\Mvc\Controller
         {
             echo json_encode($request->getPost());   
         }
-        
-        
 
         die;
     }

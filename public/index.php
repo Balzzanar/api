@@ -84,6 +84,17 @@ try {
 	});
 
 	/**
+	 * Register the flash service with custom CSS classes
+	 */
+	$di->set('flashsess', function(){
+		return new Phalcon\Flash\Session(array(
+			'error' => 'alert alert-error',
+			'success' => 'alert alert-success',
+			'notice' => 'alert alert-info',
+		));
+	});
+
+	/**
 	 * Start the session the first time some component request the session service
 	 */
 	$di->set('session', function() {

@@ -3,18 +3,23 @@
 <?php echo $this->getContent() ?>
 
 <div align="center">
+	
+	<!-- Error output from the server -->
+	<p><?php $this->flashsess->output(); ?></p>
 
 	<h2>Log In</h2>
-	<pre>
+	
 		<?php 
-			foreach ($users as $user) {
-				echo $user->pass;
-				echo $user->id;
+			foreach ($users as $user) 
+			{
+				echo '<pre>';
+				echo $user->id.'<br />';
+				echo $user->username.'<br />';
+				echo '</pre>';
 			}
-			print_r($users->count()); 
 
 		?>
-	</pre>
+
 	<?php echo Tag::form(array('users/login', 'class' => 'form-inline', 'autocomplete' => 'off')) ?>
 
 		<p>
