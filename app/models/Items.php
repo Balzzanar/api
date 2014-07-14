@@ -1,7 +1,7 @@
 <?php
 
 
-class Users extends \Phalcon\Mvc\Model
+class Items extends \Phalcon\Mvc\Model
 {
 
     /**

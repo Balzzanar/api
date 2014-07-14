@@ -5,10 +5,13 @@ class UsersController extends Phalcon\Mvc\Controller
 
     public function indexAction()
     {
+	$users = new Users();
         $phql = "SELECT * FROM users ORDER BY users.id desc";
         $query = new Phalcon\Mvc\Model\Query($phql, $this->getDI());
         $users = $query->execute();
-        
+    
+	echo $users->count();
+	die("hejsan");
         $this->view->setVar("users", $users);  
         //$this->view->setVar("users", Users::find());  
     }
