@@ -1,0 +1,33 @@
+body{
+    /*  background: rgb(11, 3, 23);  */
+    background: white;
+}
+
+/* Standard box color */
+.std-box-color{
+    /* background: #b021ff; */
+    background: white;
+}
+.std-box-color, .navbar-inner{
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+/* Don't want borders on the table for contact information. */
+.contact-table td{
+    border: none;
+}
+
+/*
+-----------------------------------------------
+    Responsiveness stuff!
+-----------------------------------------------
+*/
+
+/* Remove the top 3 items in the gallery at smaller sized screens. */
+@media screen and (max-width: 1024px) {
+    .best-sale {
+        display: none !important;
+    }
+}

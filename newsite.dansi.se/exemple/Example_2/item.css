@@ -1,0 +1,98 @@
+/* DANSI SIDEBAR - Main template
+-------------------------------------------------- */
+.dansi-sidebar{
+	background-color: #202020;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 0px;
+	margin: 0px;
+}
+.dansi-sidebar ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;	
+}
+.dansi-sidebar ul li{
+	list-style-type: none;
+}
+.dansi-sidebar ul li a{
+	display: block;
+	font-weight: bold;
+}
+.dansi-sidebar .active-sidebar{
+	background-color: #080808;
+	color: white;
+}
+
+/* Style the links */
+.dansi-sidebar a{
+	padding: 7px 25px;
+	text-decoration: none;
+	color: #999;
+}
+/* Remove the standard link behivour */
+.dansi-sidebar a:active{
+	text-decoration: none;
+	cursor:default;
+}
+.dansi-sidebar a:hover{
+	text-decoration: none;
+	background-color: #303030;
+	color: white;
+}
+.dansi-sidebar a:link{
+	text-decoration: none;
+}
+.dansi-sidebar a:visited{
+	text-decoration: none;
+	cursor:default;
+}
+
+/* DANSI SITE - Main template
+-------------------------------------------------- */
+.dansi-site{
+	
+}
+
+/* ITEMS - Listing of all items
+-------------------------------------------------- */
+.item{
+	border: 1px solid #101010;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin: 10px 30px;
+}
+.item div{
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding-left: 18px;
+}
+
+/* RESPONSIVENESS - Responsiveness for the site.
+-------------------------------------------------- */
+@media (max-width: 1200px) {
+	/* Fixes for the items, correcting the margin. */
+	.item{
+		margin: 10px 50px;
+	}
+}
+@media (max-width: 992px) {
+	/* Fixes for the items */
+	.item div{
+		width: 180px;	/* Not the best of things! */
+		margin: auto;
+	}
+	/* Fixes for the sidebar, moves the text to the center. */
+	.dansi-sidebar a{
+		text-align: center;
+	}
+}
+@media (max-width: 767px) {
+	/* Fixes for the sidebar, removes the rounded courners. */
+	.dansi-sidebar{
+		-moz-border-radius: 0px;
+		border-radius: 0px;
+	}
+
+}
+
