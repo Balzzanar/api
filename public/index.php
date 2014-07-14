@@ -67,7 +67,7 @@ try {
 	/** Init the database connection */
 	$di->set('db', function(){
 	   return new \Phalcon\Db\Adapter\Pdo\Sqlite(array(  // <- return
-	      "dbname" => '../app/data/database.sqlite'
+	      "dbname" => '../app/data/dansi.db'
 	   ));
 	});
 
